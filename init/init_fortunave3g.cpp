@@ -45,10 +45,12 @@ void vendor_load_properties()
 {
     std::string bootloader = GetProperty("ro.bootloader", "");
 
-    property_set("ro.product.model", "SM-G530H");
-    property_set("ro.product.device", "fortunave3g");
+    property_override("ro.product.model", "SM-G530H");
+    property_override("ro.product.device", "fortunave3g");
     property_set("persist.radio.multisim.config", "dsds");
     property_set("ro.multisim.simslotcount", "2");
-    property_set("SIM_COUNT", "2");
 
+    std::string device = GetProperty("ro.product.device", "");
+    LOG(ERROR) << "Found bootloader id " << bootloader <<  " setting build properties for "
+        << device <<  " device" << std::endl;
 }
